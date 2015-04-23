@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
+</head>
+<body>
+  
+<div ng-controller="lista">
+  <ul>
+    <li ng-repeat='filme in filmes'>
+      {{ filme.nome }}
+    </li>
+  </ul>
+</div>
+
+
+  <script>
+    function lista($scope, $http) {
+      $scope.filmes = [];
+      $http.get('/api/filmes')
+        .then(function(result) {
+          $scope.filmes = result.data;
+      });
+    }
+  </script>
+</body>
+</html>
